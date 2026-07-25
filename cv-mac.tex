@@ -1,0 +1,122 @@
+
+\hyperlinks \Black \Black
+
+\let\Backcolor\White
+\let\Maincolor\Green
+\let\Secondcolor\Grey
+
+\newdimen\sectionrulewidth
+\newdimen\postsectionruleskip
+\sectionrulewidth=2.2cm
+\postsectionruleskip=1em
+
+\def\sectionrule{\raise.3ex\hbox to \sectionrulewidth{\leaders\hrule height .7ex\hfil}}
+
+\def\cvsecfont{\scalemain\typoscale[\magstep2/\magstep2]}
+\def\titlefont{\scalemain\typoscale[\magstep5/\magstep5]}
+\def\subtitlefont{\scalemain\typoscale[\magstep2/\magstep2]}
+
+
+\pgbackground={\Backcolor\vbox to \pageheight{\hbox to \pagewidth{\leaders\hrule depth \pageheight \hfil}\vss}}
+
+\footline={}
+\parindent=0pt
+\parskip=0pt
+
+\def\cvsec{\_scantoeol\_incvsec}
+\newif\ifcventryopen
+\newif\ifentrybodyopen
+\cventryopenfalse
+\entrybodyopenfalse
+\let\origpar=\par
+\def\closecventry{%
+  \ifcventryopen
+    \endgraf\egroup
+    \cventryopenfalse
+    \entrybodyopenfalse
+  \fi
+}
+\def\cvsection{%
+  \closecventry
+  \cvsec
+}
+\def\par{%
+  \ifentrybodyopen
+    \closecventry
+  \fi
+  \origpar
+}
+
+\def\_incvsec #1{\par\bigskip \bgroup \noindent\hskip\sectionrulewidth \Maincolor\cvsecfont%
+\llap{\sectionrule}\kern\postsectionruleskip\_scantextokens{#1}\egroup}
+
+\def\cventry{%
+  \closecventry
+  \_scantoeol\_incventry
+}
+
+\def\_incventry #1{\par\medskip
+					   \bgroup\noindent\llap{\vtop to 0pt{\hsize=\sectionrulewidth
+										\advance\hsize\postsectionruleskip
+								  \leftskip=0pt plus 1fil
+								        \rightskip=\postsectionruleskip
+								  \parfillskip=0pt
+								  \let\nl\break
+								         \noindent\_scantextokens{#1}\vss}}%
+						     \advance\leftskip by \sectionrulewidth
+						     \advance\leftskip by \postsectionruleskip
+						     \ignorespaces\noindent
+						     \cventryopentrue
+						     \entrybodyopentrue}
+					     
+\def\endcventry{\closecventry}
+\let\origbye=\bye
+\def\bye{\par\origbye}
+
+\def\name{\_scantoeol\_name}
+\def\_name#1{\def\_name{#1}}
+\def\cvtitle{\_scantoeol\_cvtitle}
+\def\_cvtitle#1{\def\_cvtitle{#1}}
+\def\address{\_scantoeol\_address}
+\def\_address#1{\def\_address{#1}}
+\def\phone{\_scantoeol\_phone}
+\def\_phone#1{\def\_phone{#1}}
+\def\email{\_scantoeol\_email}
+\def\_email#1{\def\_email{#1}}
+
+
+\def\makecvtitle{\noindent
+  \line{\vbox{\hsize=.58\hsize
+      \leftline{\titlefont\_name}
+      \kern2.5ex
+      \leftline{\Secondcolor\subtitlefont\it\_cvtitle}
+    }\hfill
+    \vbox{\hsize=.34\hsize\Secondcolor\parindent=0pt
+      \rightskip=0pt plus 1fil
+      \parfillskip=0pt
+      \noindent\picheight2ex\lower.1ex\inspic{location-symbol.pdf}\ \it\maplink{\_address}\par
+      \noindent\picheight1.9ex\lower.1ex\inspic{phone-symbol.pdf}\ \it\phonelink{\_phone}\par
+      \noindent\picheight1.4ex\inspic{email-symbol.pdf}\ \it\maillink{\_email}\par
+    }\kern1em
+  }\vskip1.5cm}
+
+
+\def\link#1#2{\let\_elinkcolor=\empty\begingroup\edef\x{\endgroup\noexpand\ulink[#1#2]{#2}}\x}
+\def\maillink#1{\link{mailto:}{#1}}
+\def\phonelink#1{\link{tel:}{#1}}
+\def\maplink#1{\link{geo://?q=}{#1}}
+
+
+
+
+
+
+
+
+
+
+
+						     
+						     
+						   						     
+						     
