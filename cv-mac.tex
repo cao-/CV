@@ -1,9 +1,13 @@
+\margins/0 a4 (3.6, 3.6, 3.6, 3.6)cm
+\fontfam[NewCM]\sans
+\typosize[10/13]
 
 \hyperlinks \Black \Black
 
 \let\Backcolor\White
 \let\Maincolor\Green
-\let\Secondcolor\Grey
+\def\DarkGrey{\setrgbcolor{0.35 0.35 0.35}}
+\let\Secondcolor\DarkGrey
 
 \newdimen\sectionrulewidth
 \newdimen\postsectionruleskip
@@ -47,7 +51,7 @@
   \origpar
 }
 
-\def\_incvsec #1{\par\bigskip \bgroup \noindent\hskip\sectionrulewidth \Maincolor\cvsecfont%
+\def\_incvsec #1{\penalty-1000\par\bigskip \bgroup \noindent\hskip\sectionrulewidth \Maincolor\cvsecfont%
 \llap{\sectionrule}\kern\postsectionruleskip\_scantextokens{#1}\egroup}
 
 \def\cventry{%
@@ -91,12 +95,12 @@
       \kern2.5ex
       \leftline{\Secondcolor\subtitlefont\it\_cvtitle}
     }\hfill
-    \vbox{\hsize=.34\hsize\Secondcolor\parindent=0pt
+    \vbox{\hsize=.34\hsize\Secondcolor\parindent=0pt\typoscale[900/900]
       \rightskip=0pt plus 1fil
       \parfillskip=0pt
-      \noindent\picheight2ex\lower.1ex\inspic{location-symbol.pdf}\ \it\maplink{\_address}\par
-      \noindent\picheight1.9ex\lower.1ex\inspic{phone-symbol.pdf}\ \it\phonelink{\_phone}\par
-      \noindent\picheight1.4ex\inspic{email-symbol.pdf}\ \it\maillink{\_email}\par
+      \noindent\picheight2ex\lower.1ex\inspic{location-symbol.pdf}\ \maplink{\_address}\par
+      \noindent\picheight1.9ex\lower.1ex\inspic{phone-symbol.pdf}\ \phonelink{\_phone}\par
+      \noindent\picheight1.4ex\inspic{email-symbol.pdf}\ \maillink{\_email}\par
     }\kern1em
   }\vskip1.5cm}
 
@@ -105,18 +109,4 @@
 \def\maillink#1{\link{mailto:}{#1}}
 \def\phonelink#1{\link{tel:}{#1}}
 \def\maplink#1{\link{geo://?q=}{#1}}
-
-
-
-
-
-
-
-
-
-
-
-						     
-						     
-						   						     
 						     
