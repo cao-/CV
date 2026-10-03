@@ -1,8 +1,8 @@
-\margins/0 a4 (3.6, 3.6, 3.6, 3.6)cm
+\margins/1 a4 (3.6, 3.6, 3.6, 3.6)cm
 \fontfam[NewCM]\sans
 \typosize[10/13]
 
-\hyperlinks \Black \Black
+\hyperlinks{}{}
 
 \let\Backcolor\White
 \let\Maincolor\Green
@@ -100,16 +100,17 @@
     \vbox{\hsize=.34\hsize\Secondcolor\parindent=0pt\typoscale[900/900]
       \rightskip=0pt plus 1fil
       \parfillskip=0pt
-      \noindent\llap{\picheight2ex\lower.1ex\inspic{location-symbol.pdf}}\ \maplink{\_address}\par
-      \noindent\llap{\picheight2ex\lower.1ex\inspic{phone-symbol.pdf}}\ \phonelink{\_phone}\par
-      \noindent\llap{\picheight1.3ex\inspic{email-symbol.pdf}}\ \maillink{\_email}\par
-      \noindent\llap{\picheight2ex\inspic{git-symbol.pdf}}\ \link{}{\_git}\par
+      \noindent\llap{\picheight2ex\lower.1ex\inspic{location-symbol.pdf}}\ \maplink\par
+      \noindent\llap{\picheight2ex\lower.1ex\inspic{phone-symbol.pdf}}\ \phonelink\par
+      \noindent\llap{\picheight1.3ex\inspic{email-symbol.pdf}}\ \maillink\par
+      \noindent\llap{\picheight2ex\inspic{git-symbol.pdf}}\ \gitlink\par
     }\kern1em
   }\vskip1.5cm}
 
 
-\def\link#1#2{\let\_elinkcolor=\empty\begingroup\edef\x{\endgroup\noexpand\ulink[#1#2]{#2}}\x}
-\def\maillink#1{\link{mailto:}{#1}}
-\def\phonelink#1{\link{tel:}{#1}}
-\def\maplink#1{\link{geo://?q=}{#1}}
+\def\link#1#2{\expanded{\noexpand\ulink[#1#2]{#2}}}
+\def\maplink{\link{geo://?q=}{\_address}}
+\def\phonelink{\link{tel:}{\_phone}}
+\def\maillink{\link{mailto:}{\_email}}
+\def\gitlink{\link{}{\_git}}
 						     
