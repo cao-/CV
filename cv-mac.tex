@@ -4,7 +4,6 @@
 
 \_hyperlinks{}{}
 
-\_def\_Backcolor{\_setgreycolor{1}}
 \_def\_Maincolor{\_setcmykcolor{1 0 1 0}}
 \_def\_Secondcolor{\_setrgbcolor{0.35 0.35 0.35}}
 
@@ -19,17 +18,13 @@
   }%
 }
 
-\_def\_cvsecfont{\_scalemain\_typoscale[\_magstep2/\_magstep2]}
 \_def\_titlefont{\_scalemain\_typoscale[\_magstep5/\_magstep5]}
 \_def\_subtitlefont{\_scalemain\_typoscale[\_magstep2/\_magstep2]}
 
-\_pgbackground={\_Backcolor\_hrule height 0pt depth \_pageheight width \_pagewidth}
-
-\_footline={}
+\_nopagenumbers
 \_parindent=0pt
 \_parskip=0pt
 
-\_def\_cvsec{\_scantoeol\_incvsec}
 \_newifi\_ifcventryopen
 \_cventryopenfalse
 \_def\_closecventry{%
@@ -41,13 +36,13 @@
 \_def\cvsection{%
   \_cvfirstcontent
   \_closecventry
-  \_cvsec
+  \_scantoeol\_incvsec
 }
 
 \_def\_incvsec #1{%
   \_penalty-1000\_par\_bigskip
   \_bgroup
-    \_noindent\_hskip\_sectionrulewidth \_Maincolor\_cvsecfont%
+    \_noindent\_hskip\_sectionrulewidth \_Maincolor\_subtitlefont%
     \_llap{\_sectionrule}\_kern\_postsectionruleskip
     \_scantextokens{#1}%
   \_egroup
@@ -78,8 +73,7 @@
     \_cventryopentrue
 }
 
-\_let\_origbye=\bye
-\_def\bye{\_closecventry\_origbye}
+\_addto\_byehook{\_closecventry}
 
 \_def\_cvfield#1{\_def\_cvfieldname{#1}\_scantoeol\_setcvfield}
 \_def\_setcvfield#1{\_sdef{\_cvfieldname}{#1}}
