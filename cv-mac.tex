@@ -37,6 +37,7 @@
   \fi
 }
 \def\cvsection{%
+  \cvfirstcontent
   \closecventry
   \cvsec
 }
@@ -95,6 +96,10 @@
       \noindent\llap{\picheight2ex\inspic{git-symbol.pdf}}\ \gitlink\par
     }\kern1em
   }\vskip1.5cm}
+\def\cvfirstcontent{%
+  \global\let\cvfirstcontent=\relax
+  \makecvtitle
+}
 
 
 \def\link#1#2{\expanded{\noexpand\ulink[#1#2]{#2}}}
