@@ -29,26 +29,16 @@
 
 \def\cvsec{\_scantoeol\_incvsec}
 \newif\ifcventryopen
-\newif\ifentrybodyopen
 \cventryopenfalse
-\entrybodyopenfalse
-\let\origpar=\par
 \def\closecventry{%
   \ifcventryopen
     \endgraf\egroup
     \cventryopenfalse
-    \entrybodyopenfalse
   \fi
 }
 \def\cvsection{%
   \closecventry
   \cvsec
-}
-\def\par{%
-  \ifentrybodyopen
-    \closecventry
-  \fi
-  \origpar
 }
 
 \def\_incvsec #1{\penalty-1000\par\bigskip \bgroup \noindent\hskip\sectionrulewidth \Maincolor\cvsecfont%
@@ -70,12 +60,11 @@
 						     \advance\leftskip by \sectionrulewidth
 						     \advance\leftskip by \postsectionruleskip
 						     \ignorespaces\noindent
-						     \cventryopentrue
-						     \entrybodyopentrue}
+						     \cventryopentrue}
 					     
 \def\endcventry{\closecventry}
 \let\origbye=\bye
-\def\bye{\par\origbye}
+\def\bye{\closecventry\origbye}
 
 \def\name{\_scantoeol\_name}
 \def\_name#1{\def\_name{#1}}
