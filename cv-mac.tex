@@ -1,110 +1,119 @@
-\margins/1 a4 (3.6, 3.6, 3.6, 3.6)cm
-\fontfam[NewCM]\sans
-\typosize[10/13]
+\_margins/1 a4 (3.6, 3.6, 3.6, 3.6)cm
+\_fontfam[NewCM]\sans
+\_typosize[10/13]
 
-\hyperlinks{}{}
+\_hyperlinks{}{}
 
-\let\Backcolor\White
-\let\Maincolor\Green
-\def\DarkGrey{\setrgbcolor{0.35 0.35 0.35}}
-\let\Secondcolor\DarkGrey
+\_def\_Backcolor{\_setgreycolor{1}}
+\_def\_Maincolor{\_setcmykcolor{1 0 1 0}}
+\_def\_Secondcolor{\_setrgbcolor{0.35 0.35 0.35}}
 
-\newdimen\sectionrulewidth
-\newdimen\postsectionruleskip
-\sectionrulewidth=2.2cm
-\postsectionruleskip=1em
+\_newdimen\_sectionrulewidth
+\_newdimen\_postsectionruleskip
+\_sectionrulewidth=2.2cm
+\_postsectionruleskip=1em
 
-\def\sectionrule{\raise.3ex\hbox to \sectionrulewidth{\leaders\hrule height .7ex\hfil}}
-
-\def\cvsecfont{\scalemain\typoscale[\magstep2/\magstep2]}
-\def\titlefont{\scalemain\typoscale[\magstep5/\magstep5]}
-\def\subtitlefont{\scalemain\typoscale[\magstep2/\magstep2]}
-
-
-\pgbackground={\Backcolor\vbox to \pageheight{\hbox to \pagewidth{\leaders\hrule depth \pageheight \hfil}\vss}}
-
-\footline={}
-\parindent=0pt
-\parskip=0pt
-
-\def\cvsec{\_scantoeol\_incvsec}
-\newif\ifcventryopen
-\cventryopenfalse
-\def\closecventry{%
-  \ifcventryopen
-    \endgraf\egroup
-    \cventryopenfalse
-  \fi
-}
-\def\cvsection{%
-  \cvfirstcontent
-  \closecventry
-  \cvsec
+\_def\_sectionrule{%
+  \_raise.3ex\_hbox to \_sectionrulewidth{%
+    \_leaders\_hrule height .7ex\_hfil
+  }%
 }
 
-\def\_incvsec #1{\penalty-1000\par\bigskip \bgroup \noindent\hskip\sectionrulewidth \Maincolor\cvsecfont%
-\llap{\sectionrule}\kern\postsectionruleskip\_scantextokens{#1}\egroup}
+\_def\_cvsecfont{\_scalemain\_typoscale[\_magstep2/\_magstep2]}
+\_def\_titlefont{\_scalemain\_typoscale[\_magstep5/\_magstep5]}
+\_def\_subtitlefont{\_scalemain\_typoscale[\_magstep2/\_magstep2]}
 
-\def\cventry{%
-  \closecventry
+\_pgbackground={\_Backcolor\_hrule height 0pt depth \_pageheight width \_pagewidth}
+
+\_footline={}
+\_parindent=0pt
+\_parskip=0pt
+
+\_def\_cvsec{\_scantoeol\_incvsec}
+\_newifi\_ifcventryopen
+\_cventryopenfalse
+\_def\_closecventry{%
+  \_ifcventryopen
+    \_endgraf\_egroup
+    \_cventryopenfalse
+  \_fi
+}
+\_def\cvsection{%
+  \_cvfirstcontent
+  \_closecventry
+  \_cvsec
+}
+
+\_def\_incvsec #1{%
+  \_penalty-1000\_par\_bigskip
+  \_bgroup
+    \_noindent\_hskip\_sectionrulewidth \_Maincolor\_cvsecfont%
+    \_llap{\_sectionrule}\_kern\_postsectionruleskip
+    \_scantextokens{#1}%
+  \_egroup
+}
+
+\_def\cventry{%
+  \_closecventry
   \_scantoeol\_incventry
 }
 
-\def\_incventry #1{\par\medskip
-					   \bgroup\noindent\llap{\vtop to 0pt{\hsize=\sectionrulewidth
-										\advance\hsize\postsectionruleskip
-								  \leftskip=0pt plus 1fil
-								        \rightskip=\postsectionruleskip
-								  \parfillskip=0pt
-								  \let\nl\break
-								         \noindent\_scantextokens{#1}\vss}}%
-						     \advance\leftskip by \sectionrulewidth
-						     \advance\leftskip by \postsectionruleskip
-						     \ignorespaces\noindent
-						     \cventryopentrue}
-					     
-\def\endcventry{\closecventry}
-\let\origbye=\bye
-\def\bye{\closecventry\origbye}
+\_def\_incventry #1{%
+  \_par\_medskip
+  \_bgroup
+    \_noindent\_llap{%
+      \_vtop to 0pt{%
+        \_hsize=\_sectionrulewidth
+        \_advance\_hsize\_postsectionruleskip
+        \_leftskip=0pt plus 1fil
+        \_rightskip=\_postsectionruleskip
+        \_parfillskip=0pt
+        \_let\nl=\_break
+        \_noindent\_scantextokens{#1}\_vss
+      }%
+    }%
+    \_advance\_leftskip by \_sectionrulewidth
+    \_advance\_leftskip by \_postsectionruleskip
+    \_ignorespaces\_noindent
+    \_cventryopentrue
+}
 
-\def\name{\_scantoeol\_name}
-\def\_name#1{\def\_name{#1}}
-\def\cvtitle{\_scantoeol\_cvtitle}
-\def\_cvtitle#1{\def\_cvtitle{#1}}
-\def\address{\_scantoeol\_address}
-\def\_address#1{\def\_address{#1}}
-\def\phone{\_scantoeol\_phone}
-\def\_phone#1{\def\_phone{#1}}
-\def\email{\_scantoeol\_email}
-\def\_email#1{\def\_email{#1}}
-\def\git{\_scantoeol\_git}
-\def\_git#1{\def\_git{#1}}
+\_let\_origbye=\bye
+\_def\bye{\_closecventry\_origbye}
 
-
-\def\makecvtitle{\noindent
-  \line{\vbox{\hsize=.58\hsize
-      \leftline{\titlefont\_name}
-      \kern2.5ex
-      \leftline{\Secondcolor\subtitlefont\it\_cvtitle}
-    }\hfill
-    \vbox{\hsize=.34\hsize\Secondcolor\parindent=0pt\typoscale[900/900]
-      \rightskip=0pt plus 1fil
-      \parfillskip=0pt
-      \noindent\llap{\picheight2ex\lower.1ex\inspic{location-symbol.pdf}}\ \maplink\par
-      \noindent\llap{\picheight2ex\lower.1ex\inspic{phone-symbol.pdf}}\ \phonelink\par
-      \noindent\llap{\picheight1.3ex\inspic{email-symbol.pdf}}\ \maillink\par
-      \noindent\llap{\picheight2ex\inspic{git-symbol.pdf}}\ \gitlink\par
-    }\kern1em
-  }\vskip1.5cm}
-\def\cvfirstcontent{%
-  \global\let\cvfirstcontent=\relax
-  \makecvtitle
+\_def\_cvfield#1{\_def\_cvfieldname{#1}\_scantoeol\_setcvfield}
+\_def\_setcvfield#1{\_sdef{\_cvfieldname}{#1}}
+\_foreach name,cvtitle,address,phone,email,git,\_do #1,{%
+  \_sdef{#1}{\_cvfield{_#1}}%
 }
 
 
-\def\link#1#2{\expanded{\noexpand\ulink[#1#2]{#2}}}
-\def\maplink{\link{geo://?q=}{\_address}}
-\def\phonelink{\link{tel:}{\_phone}}
-\def\maillink{\link{mailto:}{\_email}}
-\def\gitlink{\link{}{\_git}}
-						     
+\_def\_makecvtitle{%
+  \_noindent
+  \_line{%
+    \_vbox{\_hsize=.58\_hsize
+      \_leftline{\_titlefont\_name}
+      \_kern2.5ex
+      \_leftline{\_Secondcolor\_subtitlefont\_it\_cvtitle}
+    }\_hfill
+    \_vbox{\_hsize=.34\_hsize\_Secondcolor\_parindent=0pt\_typoscale[900/900]
+      \_rightskip=0pt plus 1fil
+      \_parfillskip=0pt
+      \_noindent\_llap{\_picheight=2ex\_lower.1ex\_inspic{location-symbol.pdf}}\ \_maplink\_par
+      \_noindent\_llap{\_picheight=2ex\_lower.1ex\_inspic{phone-symbol.pdf}}\ \_phonelink\_par
+      \_noindent\_llap{\_picheight=1.3ex\_inspic{email-symbol.pdf}}\ \_maillink\_par
+      \_noindent\_llap{\_picheight=2ex\_inspic{git-symbol.pdf}}\ \_gitlink\_par
+    }\_kern1em
+  }\_vskip1.5cm
+}
+\_def\_cvfirstcontent{%
+  \_global\_let\_cvfirstcontent=\_relax
+  \_makecvtitle
+}
+
+
+\_def\_cvlink#1#2{\_expanded{\_noexpand\_ulink[#1#2]{#2}}}
+\_foreach (map,geo://?q=,address)(phone,tel:,phone)(mail,mailto:,email)(git,,git)%
+    \_do (#1,#2,#3){%
+  \_sdef{_#1link}{\_cvlink{#2}{\_cs{_#3}}}%
+}
